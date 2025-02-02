@@ -406,10 +406,10 @@ const generateFiles = async (projectPath, dbType) => {
 const chalk = require('chalk');
 const ora = require('ora');
 const boxen = require('boxen');
-const gradient = require('gradient-string');
 
 const main = async () => {
   try {
+    const gradient = await import('gradient-string');
     // Title display with gradient
     console.log('\n');
 
