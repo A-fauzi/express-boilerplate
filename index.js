@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
-const path = require('path');
-const { execSync } = require('child_process');
-const readline = require('readline');
+import fs from 'fs';
+import path from 'path';
+import { execSync } from 'child_process';
+import readline from 'readline';
 
 // Create readline interface
 const rl = readline.createInterface({
@@ -383,7 +383,7 @@ const createProjectStructure = async (projectPath, dbType) => {
 // Generate project files
 const generateFiles = async (projectPath, dbType) => {
   const templates = getBaseTemplates(dbType);
-  
+
   // Generate base files
   for (const [filePath, content] of Object.entries(templates)) {
     await fs.promises.writeFile(
@@ -403,9 +403,10 @@ const generateFiles = async (projectPath, dbType) => {
 };
 
 // Main function
-const chalk = require('chalk');
-const ora = require('ora');
-const boxen = require('boxen');
+import chalk from 'chalk';
+import ora from 'ora';
+import boxen from 'boxen';
+import gradient from 'gradient-string';
 
 const main = async () => {
   try {
@@ -413,7 +414,7 @@ const main = async () => {
     // Title display with gradient
     console.log('\n');
 
-const title = gradient.pastel.multiline(boxen(
+    const title = gradient.pastel.multiline(boxen(
   '🚀 Express Clean Architecture Generator 🚀\n' +
   '      Building Modern Node.js Apps       \n' +
   '         Created by (Afauzi)             ',
@@ -424,7 +425,7 @@ const title = gradient.pastel.multiline(boxen(
     borderColor: 'cyan'
   }
 ));
-console.log(title);
+    console.log(title);
 
     // Get project name with styled prompt
     const projectName = await askQuestion(
@@ -522,7 +523,7 @@ console.log(title);
     const packageJson = JSON.parse(
       await fs.promises.readFile(path.join(projectPath, 'package.json'))
     );
-    
+
     packageJson.scripts = {
       start: 'node src/server.js',
       dev: 'nodemon src/server.js',
@@ -563,7 +564,8 @@ console.log(title);
         borderColor: 'red'
       }
     ));
-    process.exit(1);
+    await main()
+    //process.exit(1);
   } finally {
     rl.close();
   }

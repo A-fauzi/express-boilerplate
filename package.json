@@ -2,13 +2,14 @@
   "name": "create-express-clean",
   "version": "1.0.3",
   "description": "Generate Express.js project with Clean Architecture",
-  "main": "index.js",
+  "main": "src/generator/index.js",
+  "type": "module",
   "bin": {
-    "create-express-clean": "./index.js"
+    "create-express-clean": "./src/generator/index.js"
   },
   "scripts": {
-    "start": "node --no-warnings index.js",
-    "dev": "nodemon --no-warnings index.js",
+    "start": "node --no-warnings src/generator/index.js",
+    "dev": "nodemon --no-warnings src/generator/index.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "jest"
