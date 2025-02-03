@@ -1,6 +1,6 @@
 {
   "name": "create-express-clean",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Generate Express.js project with Clean Architecture",
   "main": "src/generator/index.js",
   "type": "module",

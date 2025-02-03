@@ -147,8 +147,9 @@ const main = async () => {
       chalk.greenBright('🎊 Project created successfully! 🎊\n\n') +
       chalk.yellowBright('Next steps:\n') +
       chalk.cyan(`1. cd ${projectName}\n`) +
-      chalk.cyan('2. Update .env with your configuration\n') +
-      chalk.cyan('3. npm run dev\n\n') +
+      chalk.cyan('2. cp .env.example .env\n') +
+      chalk.cyan('3. update .env with your configuration\n') +
+      chalk.cyan('4. npm run dev\n\n') +
       chalk.magentaBright('🚀 Happy coding! May the code be with you 🌟'),
       {
         padding: 1,

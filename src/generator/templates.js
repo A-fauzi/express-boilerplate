@@ -23,7 +23,7 @@ class App {
   }
 
   setupRoutes() {
-    this.app.use('/api', routes);
+    this.app.use('/', routes);
     this.app.use(errorHandler);
   }
 
@@ -97,17 +97,128 @@ module.exports.AppError = AppError;`,
     'src/interfaces/routes/index.js': `
 const router = require('express').Router();
 
-// Health check
-router.get('/health', (req, res) => {
+// Route main
+router.get('/', (req, res) => {
   res.status(200).json({ 
-    status: 'ok',
-    timestamp: new Date().toISOString()
+    message: 'Server is running successfully!',
+    status: 'success',
+    timestamp: new Date().toISOString(),
   });
 });
 
 module.exports = router;`,
 
-    '.env': `
+     'README.md': `
+# Express Clean Architecture Generator
+
+🚀 **A CLI tool for generating Express.js applications following Clean Architecture principles**  
+
+---
+
+## 🌟 Overview  
+
+Express Clean Architecture Generator is a CLI tool designed to streamline the process of creating robust Express.js applications. It follows **Uncle Bob's Clean Architecture** principles, ensuring modularity and maintainability.  
+
+---
+
+## ✨ Features  
+
+### 🏗️ Architecture & Structure  
+- **Clean Architecture Implementation**  
+- **Domain-driven design approach**  
+- **Modular and maintainable structure**  
+
+### 🛢️ Database Integration  
+- **PostgreSQL** (Knex.js for migrations, repository pattern)  
+- **MongoDB** (Mongoose integration, schema-based models)  
+
+### 🛠️ Developer Experience  
+- **Pre-configured Tools**: ESLint, Prettier, Jest, Nodemon  
+
+---
+
+## 🚀 Quick Start  
+
+### 1️⃣ Configure Environment Variables  
+\`\`\`sh
+cp .env.example .env
+\`\`\`
+
+### 2️⃣ Start Development Server  
+\`\`\`sh
+npm run dev
+\`\`\`
+
+---
+
+## 📁 Project Structure  
+
+\`\`\`
+src/
+├── app.js                # Application setup
+├── server.js             # Server entry point
+│
+├── application/          # Business logic layer
+│   ├── services/        # Application services
+│   └── use-cases/       # Use case implementations
+│
+├── domain/              # Core domain logic
+│   ├── entities/        # Business entities
+│   ├── repositories/    # Repository interfaces
+│   ├── services/        # Domain services
+│   └── value-objects/   # Value objects
+│
+├── infrastructure/      # External dependencies
+│   ├── database/       # Database connection
+│   ├── logger/         # Logging (Winston)
+│   └── security/       # Security configurations
+│
+└── interfaces/         # API & external interactions
+    ├── controllers/    # Route handlers
+    ├── middlewares/    # Express middlewares
+    ├── routes/         # API route definitions
+    └── validators/     # Input validation
+\`\`\`
+
+---
+
+## 📜 Available Scripts  
+
+| Command          | Description                          |  
+|-----------------|----------------------------------|  
+| \`npm run dev\`  | Start development server (hot-reload) |  
+| \`npm start\`    | Start production server         |  
+| \`npm test\`     | Run tests                       |  
+| \`npm run lint\` | Run ESLint                      |  
+| \`npm run format\` | Format code with Prettier      |  
+
+---
+
+## 📚 Documentation  
+
+### Architecture Overview  
+
+1. **Domain Layer** → Business rules (pure logic)  
+2. **Application Layer** → Coordinates use cases  
+3. **Infrastructure Layer** → External tools (DB, logging, security)  
+4. **Interfaces Layer** → Handles external input/output  
+
+---
+
+## 📄 License  
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.  
+
+---
+
+## 👨‍💻 Author  
+
+Created with ❤️ by **Afauzi**  
+
+⭐ **Show some love by starring this repo!**  
+`,
+
+    '.env.example': `
 NODE_ENV=development
 PORT=3000
 LOG_LEVEL=debug
